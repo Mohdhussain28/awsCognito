@@ -1,0 +1,25 @@
+{
+  "name": "awscognito",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amazon-cognito-identity-js": "^4.6.3",
+    "async": "^3.2.4",
+    "aws-sdk": "^2.1352.0",
+    "dotenv": "^16.0.3",
+    "jwt-decode": "^3.1.2",
+    "node-fetch": "^2.6.9",
+    "sam": "^0.0.7",
+    "serverless-plugin-warmup": "^8.2.1",
+    "uuid": "^9.0.0"
+  },
+  "description": ""
+}
