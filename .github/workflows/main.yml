@@ -1,0 +1,39 @@
+name: AWS Lambda CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Lambda package
+        run: npm run build
+
+      - name: Deploy to AWS Lambda
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-south-1  # Change this to your desired region
+        run: |
+          aws lambda update-function-code \
+            --function-name YourLambdaFunctionName \
+            --zip-file fileb://path/to/your/lambda/package.zip
+
+      - name: Clean up
+        run: rm -rf node_modules
+
